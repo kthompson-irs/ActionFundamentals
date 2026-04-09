@@ -21,11 +21,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Show event name
+      - name: Output event name
         run: echo "Event: ${{ github.event_name }}"
 
-      - name: Show branch name
+      - name: Output branch name
         run: echo "Branch: ${{ github.ref_name }}"
 
-      - name: List repository files
+      - name: List all files
         run: ls -la
