@@ -21,11 +21,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Output event name
-        run: echo "Event: ${{ github.event_name }}"
+      - name: Generate table output
+        run: |
+          echo "## Workflow Output Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Event | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Files | See list below |" >> $GITHUB_STEP_SUMMARY
 
-      - name: Output branch name
-        run: echo "Branch: ${{ github.ref_name }}"
-
-      - name: List all files
-        run: ls -la
+      - name: List repository files
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Repository Files" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          ls -la >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
