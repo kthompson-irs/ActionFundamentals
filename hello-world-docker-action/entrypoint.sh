@@ -1,6 +1,5 @@
-# hello-world-docker-action/entrypoint.sh
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
+set -eu
 
 echo "Hello $1"
 time=$(date)
